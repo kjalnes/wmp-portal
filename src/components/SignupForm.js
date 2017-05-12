@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Globe from './Globe';
+
 
 const SignupForm = (props) => {
     const { fullName, email, password, onChange } = props;
@@ -29,7 +29,7 @@ class SignupContainer extends Component {
         return (
             <div>
                 <SignupForm onChange={this.onChange} fullName={this.state.fullName} email={this.state.email} password={this.state.password} />
-                <Globe />
+
             </div>
         )
     }

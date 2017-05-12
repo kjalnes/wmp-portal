@@ -1,10 +1,14 @@
 import React from 'react';
 import SignupContainer from '../SignupForm';
+import Globe from '../Globe';
 
 const PortalContainer = () => {
     return (
         <div> This will be the portal container
-            <SignupContainer />
+            <div className='row'>
+                <SignupContainer />
+                <Globe />
+            </div>
         </div>
     )
 }
