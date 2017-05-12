@@ -33,9 +33,9 @@
   },
   "scripts": {
     "postinstall": "npm run webpack",
-    "test:dev": "JWT_SECRET=foo DATABASE_URL=postgres://localhost/react_template_db_test nodemon ./node_modules/mocha/bin/mocha --recursive",
+    "test:dev": "JWT_SECRET=foo DATABASE_URL=postgres://localhost/wmp_portal nodemon ./node_modules/mocha/bin/mocha --recursive",
     "webpack": "./node_modules/webpack/bin/webpack.js",
-    "start:dev": "npm run webpack -- -w & JWT_SECRET=foo DATABASE_URL=postgres://localhost/react_template_db nodemon --ignore dist/ --ignore src/ server.js"
+    "start:dev": "npm run webpack -- -w & JWT_SECRET=foo DATABASE_URL=postgres://localhost/wmp_portal nodemon --ignore dist/ --ignore src/ server.js"
   },
   "keywords": [],
   "author": "",

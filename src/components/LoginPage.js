@@ -6,7 +6,7 @@ import { login } from '../redux/reducers/userReducer.js';
 
 const Login = ({ name, password, onChange, login, error } )=> {
   return (
-    <form className='well'>
+    <form>
       {
         error ? (
           <div className='alert alert-warning'>Bad username/password</div>
@@ -34,6 +34,7 @@ class LoginPage extends Component{
     change[ev.target.name] = ev.target.value;
     this.setState(change);
   }
+
   render(){
     const { name, password, error } = this.state;
     const login = (ev)=> {
@@ -51,7 +52,7 @@ const mapDispatchToProps = (dispatch)=> {
   return {
     login: (credentials)=> {
       return dispatch(login(credentials))
-        .then(()=> hashHistory.push('/'))
+        .then(()=> hashHistory.push('/portal'))
     }
   };
 };

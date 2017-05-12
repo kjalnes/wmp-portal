@@ -1,5 +1,5 @@
 const app = require('express').Router();
-const models = require('./api/db').models;
+const models = require('../models/db').models;
 const jwt = require('jwt-simple');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'foo';
