@@ -5,8 +5,6 @@ import { rotate, animate, startRotation, stopRotation, panTo } from '../utils/gl
 class Globe extends Component {
     constructor() {
         super();
-        this.onClick = this.onClick.bind(this);
-        // this.state = { earth: null };
     }
 
     componentDidMount() {
@@ -25,20 +23,9 @@ class Globe extends Component {
         }
     }
 
-    onClick(ev) {
-        ev.preventDefault();
-        // this.setState({ earth: new WE.map('earth_div')})
-        // rotate(this.state.earth, true);
-        // some kind of axios
-        stopRotation();
-        panTo(this.state.earth);
-    }
-
-
     render() {
         return (
             <div>
-                <button onClick={ this.onClick }>Click</button>
                 <div id="earth_div">
                 </div>
             </div>

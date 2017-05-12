@@ -10,7 +10,7 @@ const PortalContainer = (props) => {
     return (
         <div> This will be the portal container
             <div className='row'>
-                <SignupContainer />
+                <SignupContainer earth={earth} />
                 <Globe setEarth={setEarth} earth={earth} />
             </div>
         </div>

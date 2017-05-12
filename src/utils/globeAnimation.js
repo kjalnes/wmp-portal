@@ -39,8 +39,8 @@ function stopRotation() {
 
 function panTo(earth) {
     let coordinates = [71.1695, 25.7832];
-    // earth.panTo(coordinates);
-    earth.panInsideBounds([[71.1695, 25.7832],[51.1695, 15.7832]])
+    earth.panTo(coordinates);
+    // earth.panInsideBounds([[71.1695, 25.7832],[51.1695, 15.7832]])
     // earth.flyTo(71.1695, 25.7832, 15, { duration: 3000 });
     var marker = WE.marker(coordinates).addTo(earth);
     // earth.setView(coordinates, 6);
