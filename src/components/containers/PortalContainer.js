@@ -2,29 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SignupContainer from '../SignupContainer';
 import Globe from '../Globe';
+import { setEarthSuccess } from '../../redux/reducers/earthReducer';
 
+const PortalContainer = (props) => {
+    const { earth, setEarth } = props;
 
-const PortalContainer = () => {
     return (
         <div> This will be the portal container
             <div className='row'>
                 <SignupContainer />
-                <Globe />
+                <Globe setEarth={setEarth} earth={earth} />
             </div>
         </div>
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return (
+const mapStateToProps = (state) => {
+    return ({
+        earth: state.earth.earth
+    })
+}
 
-//     )
-// }
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        setEarth: (earth) => dispatch(setEarthSuccess(earth))
+    })
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//     return (
-
-//     )
-// }
-
-export default connect(null)(PortalContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PortalContainer);

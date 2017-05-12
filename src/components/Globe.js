@@ -6,20 +6,22 @@ class Globe extends Component {
     constructor() {
         super();
         this.onClick = this.onClick.bind(this);
-        this.state = { earth: null };
+        // this.state = { earth: null };
     }
 
     componentDidMount() {
         // gets called on load page
-        this.setState({ earth: new WE.map('earth_div') })
-
+        if(!this.props.earth) {
+            this.props.setEarth(new WE.map('earth_div'));
+        }
     }
 
     componentWillUpdate(nextProps, nextState) {
-
-        if(!this.state.earth && nextState.earth) {
+        console.log('this.props', this.props)
+        console.log('nextProps', nextProps)
+        if(!this.props.earth && nextProps.earth) {
             // initialize(nextState.earth);
-            rotate(nextState.earth);
+            rotate(nextProps.earth);
         }
     }
 
