@@ -1,6 +1,8 @@
 import React from 'react';
-import SignupContainer from '../SignupForm';
+import { connect } from 'react-redux';
+import SignupContainer from '../SignupContainer';
 import Globe from '../Globe';
+
 
 const PortalContainer = () => {
     return (
@@ -13,5 +15,16 @@ const PortalContainer = () => {
     )
 }
 
+// const mapStateToProps = (state) => {
+//     return (
 
-export default PortalContainer;
+//     )
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//     return (
+
+//     )
+// }
+
+export default connect(null)(PortalContainer);

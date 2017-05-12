@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { rotate, animate, startRotation, stopRotation, panTo } from '../utils/globeAnimation';
 
+
 class Globe extends Component {
     constructor() {
         super();
@@ -22,14 +23,13 @@ class Globe extends Component {
         }
     }
 
-
     onClick(ev) {
         ev.preventDefault();
         // this.setState({ earth: new WE.map('earth_div')})
         // rotate(this.state.earth, true);
+        // some kind of axios
         stopRotation();
         panTo(this.state.earth);
-
     }
 
 
@@ -43,10 +43,6 @@ class Globe extends Component {
         )
     }
 }
-
-
-
-
 
 
 export default Globe;

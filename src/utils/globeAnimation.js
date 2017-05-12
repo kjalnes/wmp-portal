@@ -5,15 +5,12 @@
 //      // panTo(center, options?)
 // }
 
-
-
 let requestId;
 let before = null;
 
 function rotate(earth) {
     earth.setView([40.6925285, -73.9553329], 3);
     WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(earth);
-
     // Start a simple rotation animation
     startRotation(earth);
 }
@@ -40,9 +37,13 @@ function stopRotation() {
 }
 
 
-function panTo(earth, coordinates) {
-    console.log('panTo got called')
-    earth.panTo([71.1695, 25.7832])
+function panTo(earth) {
+    let coordinates = [71.1695, 25.7832];
+    // earth.panTo(coordinates);
+    earth.panInsideBounds([[71.1695, 25.7832],[51.1695, 15.7832]])
+    // earth.flyTo(71.1695, 25.7832, 15, { duration: 3000 });
+    var marker = WE.marker(coordinates).addTo(earth);
+    // earth.setView(coordinates, 6);
 }
 
 export { rotate, animate, startRotation, stopRotation, panTo };

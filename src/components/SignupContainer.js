@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 const SignupForm = (props) => {
     const { fullName, email, password, onChange } = props;
     return (
@@ -25,6 +24,10 @@ class SignupContainer extends Component {
         console.log(this.state[type])
     }
 
+    onClick(ev) {
+        ev.preventDefault();
+    }
+
     render() {
         return (
             <div>
@@ -34,7 +37,6 @@ class SignupContainer extends Component {
         )
     }
 }
-
 
 
 export default SignupContainer;
