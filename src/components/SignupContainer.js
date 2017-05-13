@@ -10,7 +10,7 @@ const SignupForm = (props) => {
             <input onChange={ onChange.bind(null, 'lastName') } value={ lastName }  name='lastName' className='form-control' placeholder='Last name'/>
             <input onChange={ onChange.bind(null, 'email') } value={ email }  name='email' className='form-control'placeholder='Email'/>
             <input onChange={ onChange.bind(null, 'password') } value={ password }  name='password' className='form-control' type='password' placeholder='Password'/>
-            <button onClick={ onClick } className='btn btn-primary'>Sign up</button>
+            <button onClick={ onClick.bind(null, 'signup') } className='btn btn-primary'>Sign up</button>
         </form>
     )
 }
@@ -27,7 +27,7 @@ const ClassForm = (props) => {
                 <label> Choose what school semester your class will be participating</label>
                 <select onChange={onChange.bind(null, 'semester')} className='selectpicker  form-control show-tick' data-width='350px' >
                     <optgroup label="2017">
-                        <option value="spring-17" selected="selected">Spring</option>
+                        <option value="spring-17">Spring</option>
                         <option value="fall-17">Fall</option>
                     </optgroup>
                     <optgroup label="2018">
@@ -36,7 +36,7 @@ const ClassForm = (props) => {
                     </optgroup>
                 </select>
                 </div>
-                <button onClick={ onClick } className='btn btn-primary'>Register class</button>
+                <button onClick={ onClick.bind(null, 'register-class') } className='btn btn-primary'>Register class</button>
             </form>
         </div>
     )
@@ -65,13 +65,21 @@ class SignupContainer extends Component {
     }
 
 
-    onClick(ev) {
+    onClick(action, ev) {
         ev.preventDefault();
         // this.setState({ earth: new WE.map('earth_div')})
         // rotate(this.state.earth, true);
         // some kind of axios
-        this.props.createUser(this.state);
-        this.props.getLocation();
+        let userInfo = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password };
+        let classInfo = {schoolName: this.state.schoolName, size: this.state.size, semester: this.state.semester };
+        if(action === 'signup') {
+            this.props.createUser(userInfo);
+            this.props.getLocation();
+        }
+        if(action === 'register-class') {
+            // this.props.createClass(classInfo)
+            console.log('register class action needed')
+        }
 
         // panTo(this.props.earth, this.props.location);
     }

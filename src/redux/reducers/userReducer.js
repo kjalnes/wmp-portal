@@ -2,18 +2,28 @@ import axios from 'axios';
 
 /*** CONSTANTS ***/
 const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+const CREATE_CLASS_SUCCESS = 'CREATE_CLASS_SUCCESS';
 
 /*** ACTIONS ***/
 const createUserSuccess = (user) => {
-  console.log('user', user)
   return {
     type: CREATE_USER_SUCCESS,
     user
   }
 }
+const createClassSuccess = (class) => {
+  return {
+    type: CREATE_CLASS_SUCCESS,
+    class: class
+  }
+}
+
+
+
 
 /*** METHODS ***/
 
+/* step 1 */
 const createUser = (user) => {
   return (dispatch)=> {
     return axios.post(`/api/user`, user)
@@ -23,12 +33,24 @@ const createUser = (user) => {
   };
 }
 
+/* step 2 */
+const createClass = (class) => {
+  return (dispatch)=> {
+      return axios.post(`/api/class`, class)
+        .then(response => {
+          return dispatch(createClassSuccess(response.data))
+        });
+  };
+}
 
 
 const userReducer = (state={}, action)=> {
   switch(action.type){
     case CREATE_USER_SUCCESS:
-      state = Object.assign({}, state, action.user);
+      state = Object.assign({}, state, {user: action.user});
+      break;
+    case CREATE_CLASS_SUCCESS:
+      state = Object.assign({}, state, {class: action.class});
       break;
     case LOGIN_SUCCESS:
       state = Object.assign({}, state, action.user);
@@ -42,7 +64,7 @@ const userReducer = (state={}, action)=> {
 
 
 
-export { createUser };
+export { createUser, createClass };
 
 
 

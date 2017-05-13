@@ -18,8 +18,7 @@ const Routes = ({ bootstrap })=> {
   return (
     <Router history={ hashHistory } onEnter={ bootstrap() }>
       <Route path='/' component={ Layout }>
-        <IndexRoute component={ Home } />
-
+        <IndexRoute component={ PortalContainer } />
         <Route path='portal' component={PortalContainer} />
         <Route path='login' component={LoginPage} />
       </Route>

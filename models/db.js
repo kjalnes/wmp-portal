@@ -1,16 +1,29 @@
 const Sequelize = require('sequelize');
-
 const conn = new Sequelize(process.env.DATABASE_URL);
+
+// const User = require('./User');
+// const Class = require('./Class');
+
 
 const User = conn.define('user', {
   firstName: conn.Sequelize.STRING,
   lastName: conn.Sequelize.STRING,
   email: {
     type: conn.Sequelize.STRING,
-    unique: true
+    // unique: true
   },
   password: conn.Sequelize.STRING
 });
+
+
+
+
+const Class = conn.define('class', {
+  schoolName: conn.Sequelize.STRING,
+  size: conn.Sequelize.INTEGER,
+  semester: conn.Sequelize.STRING
+});
+
 
 
 
@@ -34,8 +47,10 @@ const seed = ()=> {
 
 module.exports = {
   models: {
-    User
+    User,
+    Class
   },
   sync,
-  seed
+  seed,
+  conn
 };

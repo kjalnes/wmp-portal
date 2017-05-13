@@ -1,6 +1,10 @@
-const conn = require('./db');
+// const conn = require('./db').conn;
 
-const Class = conn.define('class', {
-  size: conn.Sequelize.INTEGER,
+// const Class = conn.define('class', {
+//   schoolName: conn.Sequelize.STRING,
+//   size: conn.Sequelize.INTEGER,
+//   semester: conn.Sequelize.STRING
+// });
 
-});
+// module.exports = Class;
+
