@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import Layout from './components/Layout';
 import Home from './components/Home';
-import ProductsPage from './components/Product/ProductsPage';
+// import ProductsPage from './components/Product/ProductsPage';
 import LoginPage from './components/LoginPage';
 import PortalContainer from './components/containers/PortalContainer';
 
@@ -19,7 +19,7 @@ const Routes = ({ bootstrap })=> {
     <Router history={ hashHistory } onEnter={ bootstrap() }>
       <Route path='/' component={ Layout }>
         <IndexRoute component={ Home } />
-        <Route path='products' component={ProductsPage} />
+
         <Route path='portal' component={PortalContainer} />
         <Route path='login' component={LoginPage} />
       </Route>
@@ -31,7 +31,6 @@ const mapDispatchToProps = (dispatch)=> {
   const bootstrap = ()=> {
     dispatch(exchangeTokenForUser())
       .then( user => console.log(user));
-    dispatch(loadProducts());
   };
   return {
     bootstrap

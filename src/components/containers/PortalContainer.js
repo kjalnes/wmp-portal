@@ -2,16 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SignupContainer from '../SignupContainer';
 import Globe from '../Globe';
-import { setEarthSuccess } from '../../redux/reducers/earthReducer';
+
+import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer';
+import { createUser } from '../../redux/reducers/userReducer';
 
 const PortalContainer = (props) => {
-    const { earth, setEarth } = props;
+    const { earth, setEarth, getLocation, location } = props;
 
     return (
         <div> This will be the portal container
-            <div className='row'>
-                <SignupContainer earth={earth} />
-                <Globe setEarth={setEarth} earth={earth} />
+            <div className='portal-container'>
+                <SignupContainer earth={earth} getLocation={getLocation} location={location}/>
+                <Globe setEarth={setEarth} earth={earth} location={location}/>
             </div>
         </div>
     )
@@ -19,13 +21,17 @@ const PortalContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return ({
-        earth: state.earth.earth
+        earth: state.earth.earth,
+        location: state.earth.location
     })
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+    console.log('ownProps', ownProps)
     return ({
-        setEarth: (earth) => dispatch(setEarthSuccess(earth))
+        setEarth: (earth) => dispatch(setEarthSuccess(earth)),
+        getLocation: () => dispatch(getLocation())
+        // createUser: (user) => dispatch(createUser(user))
     })
 }
 

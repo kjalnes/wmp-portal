@@ -36,13 +36,20 @@ function stopRotation() {
     }
 }
 
+function panTo(earth, coordinates) {
+    let latitude = coordinates[0];
+    let longitude = coordinates[1];
 
-function panTo(earth) {
-    let coordinates = [71.1695, 25.7832];
-    earth.panTo(coordinates);
-    // earth.panInsideBounds([[71.1695, 25.7832],[51.1695, 15.7832]])
-    // earth.flyTo(71.1695, 25.7832, 15, { duration: 3000 });
-    var marker = WE.marker(coordinates).addTo(earth);
+    earth.panInsideBounds([
+        [ latitude - 10, longitude - 10 ],
+        [ latitude + 10, longitude + 10 ]
+    ]);
+
+    WE.marker(coordinates).addTo(earth);
+
+    // let coordinates = [71.1695, 25.7832];
+    // earth.panTo(coordinates);
+    // earth.flyTo(coordinates[0], coordinates[1], 0.5, { duration: 3000 });
     // earth.setView(coordinates, 6);
 }
 

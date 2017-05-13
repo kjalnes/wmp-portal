@@ -11,14 +11,13 @@ class Globe extends Component {
         // gets called on load page
         if(!this.props.earth) {
             this.props.setEarth(new WE.map('earth_div'));
+        } else {
+            rotate(this.props.earth)
         }
     }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log('this.props', this.props)
-        console.log('nextProps', nextProps)
         if(!this.props.earth && nextProps.earth) {
-            // initialize(nextState.earth);
             rotate(nextProps.earth);
         }
     }

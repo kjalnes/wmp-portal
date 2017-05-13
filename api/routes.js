@@ -7,7 +7,6 @@ const JWT_SECRET = process.env.JWT_SECRET || 'foo';
 module.exports = app;
 
 
-
 // login and authenticate
 app.get('/auth/:token', (req, res, next)=> {
   const token = jwt.decode(req.params.token, JWT_SECRET);

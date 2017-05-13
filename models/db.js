@@ -2,13 +2,6 @@ const Sequelize = require('sequelize');
 
 const conn = new Sequelize(process.env.DATABASE_URL);
 
-const Product = conn.define('product', {
-  name: {
-    type: conn.Sequelize.STRING,
-    unique: true
-  }
-});
-
 const User = conn.define('user', {
   name: {
     type: conn.Sequelize.STRING,
@@ -17,38 +10,28 @@ const User = conn.define('user', {
   password: conn.Sequelize.STRING
 });
 
+
+
 const sync = ()=> conn.sync({ force: true });
 
 const seed = ()=> {
-  const products = ['foo', 'bar', 'bazz'];
-  const users = ['moe', 'larry', 'curly'];
-  let foo, bar, bazz, moe, larry, curly;
+  const users = ['Rolf Ivar Breivik', 'Vegard Hillestad', 'Åse Urke'];
+  let rolf, vegard, aase;
 
   return sync()
     .then(()=> {
-      return User.destroy({ truncate: true });//not sure why i need this?
+      return User.destroy({ truncate: true });//not sure why i need this?/
     })
     .then(()=> {
-      const promises = products.map(name => Product.create({ name }))
-        .concat(users.map( name => User.create( { name, password: name.toUpperCase()})));
+      const promises = users.map( name => User.create( { name, password: '123'}));
       return Promise.all(promises);
     })
-    .then( result => [ foo, bar, bazz, moe, larry, curly ] = result )
-    .then(()=> {
-      return {
-        moe,
-        larry,
-        curly,
-        foo,
-        bar,
-        bazz
-      };
-    });
+    .then( result => [ rolf, vegard, aase] = result )
+    .then(()=> { rolf, vegard, aase });
 };
 
 module.exports = {
   models: {
-    Product,
     User
   },
   sync,

@@ -6,7 +6,7 @@ import earthReducer from './reducers/earthReducer';
 
 
 const combined = combineReducers({
-  products: productsReducer,
+  // products: productsReducer,
   user: userReducer,
   earth: earthReducer
 });
