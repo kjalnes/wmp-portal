@@ -49,9 +49,13 @@ class Globe extends Component {
          * country info
          */
         if (currentCountry !== nextCountry && nextCountry) {
+            // stops the rotation
             stopRotation();
+            // pans to the country
             panTo(nextProps.earth, nextProps.currentCountry.latlng);
+            // creates the popup marker
             let marker = WE.marker(nextProps.currentCountry.latlng).addTo(nextProps.earth);
+            // mounts the popup html to the marker
             marker.bindPopup(this.getPopupMarkup(nextProps.currentCountry)).openPopup();
         }
     }
