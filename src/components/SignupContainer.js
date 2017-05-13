@@ -15,15 +15,52 @@ const SignupForm = (props) => {
     )
 }
 
+const ClassForm = (props) => {
+    const { firstName, onChange, onClick, schoolName, size, semester } = props;
+    return (
+        <div>
+            <h3>Thanks for signing up, {firstName}!</h3>
+            <form className='form-group'>
+                <input onChange={ onChange.bind(null, 'schoolName') } value={ schoolName }  name='schoolName' className='form-control' placeholder='School name'/>
+                <input onChange={ onChange.bind(null, 'size') } value={ size }  name='size' className='form-control' placeholder='Amount of students in your class'/>
+                <div>
+                <label> Choose what school semester your class will be participating</label>
+                <select onChange={onChange.bind(null, 'semester')} className='selectpicker  form-control show-tick' data-width='350px' >
+                    <optgroup label="2017">
+                        <option value="spring-17" selected="selected">Spring</option>
+                        <option value="fall-17">Fall</option>
+                    </optgroup>
+                    <optgroup label="2018">
+                        <option value="spring-18">Spring</option>
+                        <option value="fall-18" selected>Fall</option>
+                    </optgroup>
+                </select>
+                </div>
+                <button onClick={ onClick } className='btn btn-primary'>Register class</button>
+            </form>
+        </div>
+    )
+}
+
+
 class SignupContainer extends Component {
     constructor() {
         super()
-        this.state = { firstName: '', lastName: '', email: '', password: ''};
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            schoolName: '',
+            size: null,
+            semester: ''
+        };
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
     }
 
     onChange(type, ev) {
+        console.log('type, ev.target.value', type, ev.target.value)
         this.setState({[type] : ev.target.value})
     }
 
@@ -49,15 +86,27 @@ class SignupContainer extends Component {
     }
 
     render() {
+        console.log('this.props', this.props)
         return (
             <div className='signup-container'>
-                <SignupForm
-                    onClick={this.onClick}
-                    onChange={this.onChange}
-                    firstName={this.state.firstName}
-                    lastName={this.state.lastName}
-                    email={this.state.email}
-                    password={this.state.password} />
+                { this.props.user.firstName && this.props.location  ?
+                    <ClassForm
+                        onClick={this.onClick}
+                        onChange={this.onChange}
+                        firstName={this.state.firstName}
+                        schoolName={this.schoolName}
+                        size={this.size}
+                        semeste={this.semester}
+                    />
+                    :
+                    <SignupForm
+                        onClick={this.onClick}
+                        onChange={this.onChange}
+                        firstName={this.state.firstName}
+                        lastName={this.state.lastName}
+                        email={this.state.email}
+                        password={this.state.password} />
+                }
             </div>
         )
     }

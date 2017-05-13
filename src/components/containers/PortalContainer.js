@@ -7,16 +7,17 @@ import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer'
 import { createUser } from '../../redux/reducers/userReducer';
 
 const PortalContainer = (props) => {
-    const { earth, setEarth, getLocation, location, createUser } = props;
+    const { earth, setEarth, getLocation, location, createUser, user } = props;
 
     return (
-        <div> This will be the portal container
+        <div>
             <div className='portal-container'>
                 <SignupContainer
                     earth={earth}
                     getLocation={getLocation}
                     location={location}
-                    createUser={createUser}/>
+                    createUser={createUser}
+                    user={user} />
                 <Globe setEarth={setEarth} earth={earth} location={location}/>
             </div>
         </div>

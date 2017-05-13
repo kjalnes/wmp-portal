@@ -18,7 +18,6 @@ const createUser = (user) => {
   return (dispatch)=> {
     return axios.post(`/api/user`, user)
       .then(response => {
-        console.log('response should be user', response.data)
         return dispatch(createUserSuccess(response.data))
       });
   };
@@ -27,7 +26,6 @@ const createUser = (user) => {
 
 
 const userReducer = (state={}, action)=> {
-  console.log('action', action)
   switch(action.type){
     case CREATE_USER_SUCCESS:
       state = Object.assign({}, state, action.user);
