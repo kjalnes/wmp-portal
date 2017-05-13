@@ -1,0 +1,53 @@
+.signup-container {
+    position: absolute;
+    z-index: 1;
+    top: 15%;
+    width: 350px;
+}
+
+.header {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+}
+
+
+input.form-control {
+    opacity: 0.7;
+}
+
+.btn-primary {
+    position: relative;
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 700;
+    padding: 12px 35px;
+    color: #fff;
+    background-color: #de174f;
+    border-color: #de174f;
+    text-transform: uppercase;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    margin-top:10px;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    border-color: #de174f;
+    color: #de174f;
+}
+
+.btn-primary:focus, .btn-primary:active {
+    background-color: #de174f;
+    border-color: #de174f;
+    opacity: 0.7;
+}
