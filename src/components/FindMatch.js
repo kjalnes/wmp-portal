@@ -28,14 +28,11 @@ class FindMatch extends Component {
             setTimeout(function(){
                 stopRotation();
                 panTo(newProps.earth, newProps.classMatch.coordinates);
-                // not triggering the render?? why??
                 this.setState({ rotating: false })
-
-            }, 3000);
+            }.bind(this), 3000);
         }
 
     }
-
 
     render() {
         return (
@@ -43,7 +40,7 @@ class FindMatch extends Component {
                 {
                     this.props.classMatch && this.state.rotating === false ?
                     <div>
-                        <h5>Your class has been matched with {this.props.classMatch.schoolName}!!!</h5>
+                        <h3>{this.props.classDetails.schoolName} has been matched with {this.props.classMatch.schoolName}</h3>
                     </div>
                     :
                     <div>
