@@ -7,18 +7,25 @@ import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer'
 import { createUser, createClass } from '../../redux/reducers/userReducer';
 
 const PortalContainer = (props) => {
-    const { earth, setEarth, getLocation, location, createUser, user, createClass} = props;
-
+    const { earth, setEarth, getLocation, location, createUser, user, schoolClass, createClass} = props;
+    console.log('schoolClass', schoolClass)
     return (
         <div>
             <div className='portal-container'>
-                <SignupContainer
-                    earth={earth}
-                    getLocation={getLocation}
-                    location={location}
-                    createUser={createUser}
-                    createClass={createClass}
-                    user={user} />
+
+                <div className='front-content'>
+                    { user === undefined || schoolClass === undefined ?
+                        <SignupContainer
+                            earth={earth}
+                            getLocation={getLocation}
+                            location={location}
+                            createUser={createUser}
+                            createClass={createClass}
+                            user={user} />
+                    :
+                        <div> Ready for next step </div>
+                    }
+                </div>
                 <Globe setEarth={setEarth} earth={earth} location={location}/>
             </div>
         </div>
@@ -29,7 +36,8 @@ const mapStateToProps = (state) => {
     return ({
         earth: state.earth.earth,
         location: state.earth.location,
-        user: state.user
+        user: state.user.user,
+        schoolClass: state.user.class
     })
 }
 

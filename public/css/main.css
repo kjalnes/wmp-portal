@@ -1,4 +1,4 @@
-.signup-container {
+.signup-container, .front-content {
     position: absolute;
     z-index: 1;
     top: 15%;

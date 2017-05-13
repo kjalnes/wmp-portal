@@ -5,20 +5,22 @@ import { rotate, animate, startRotation, stopRotation, panTo } from '../utils/gl
 const SignupForm = (props) => {
     const { firstName, lastName, email, password, onChange, onClick } = props;
     return (
-        <form className='form-group'>
-            <input onChange={ onChange.bind(null, 'firstName') } value={ firstName }  name='firstName' className='form-control' placeholder='First name'/>
-            <input onChange={ onChange.bind(null, 'lastName') } value={ lastName }  name='lastName' className='form-control' placeholder='Last name'/>
-            <input onChange={ onChange.bind(null, 'email') } value={ email }  name='email' className='form-control'placeholder='Email'/>
-            <input onChange={ onChange.bind(null, 'password') } value={ password }  name='password' className='form-control' type='password' placeholder='Password'/>
-            <button onClick={ onClick.bind(null, 'signup') } className='btn btn-primary'>Sign up</button>
-        </form>
+        <div className='signup'>
+            <form className='form-group'>
+                <input onChange={ onChange.bind(null, 'firstName') } value={ firstName }  name='firstName' className='form-control' placeholder='First name'/>
+                <input onChange={ onChange.bind(null, 'lastName') } value={ lastName }  name='lastName' className='form-control' placeholder='Last name'/>
+                <input onChange={ onChange.bind(null, 'email') } value={ email }  name='email' className='form-control'placeholder='Email'/>
+                <input onChange={ onChange.bind(null, 'password') } value={ password }  name='password' className='form-control' type='password' placeholder='Password'/>
+                <button onClick={ onClick.bind(null, 'signup') } className='btn btn-primary'>Sign up</button>
+            </form>
+        </div>
     )
 }
 
 const ClassForm = (props) => {
     const { firstName, onChange, onClick, schoolName, size, semester } = props;
     return (
-        <div>
+        <div className='signup'>
             <h3>Thanks for signing up, {firstName}!</h3>
             <form className='form-group'>
                 <input onChange={ onChange.bind(null, 'schoolName') } value={ schoolName }  name='schoolName' className='form-control' placeholder='School name'/>
@@ -102,9 +104,8 @@ class SignupContainer extends Component {
     }
 
     render() {
-        // console.log('this.props.user', this.props.user)
         return (
-            <div className='signup-container'>
+            <div className=''>
                 { this.props.user && this.props.location  ?
                     <ClassForm
                         onClick={this.onClick}
@@ -112,8 +113,7 @@ class SignupContainer extends Component {
                         firstName={this.state.firstName}
                         schoolName={this.schoolName}
                         size={this.size}
-                        semeste={this.semester}
-                    />
+                        semeste={this.semester} />
                     :
                     <SignupForm
                         onClick={this.onClick}
