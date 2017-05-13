@@ -5,25 +5,20 @@ const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
 const CREATE_CLASS_SUCCESS = 'CREATE_CLASS_SUCCESS';
 
 /*** ACTIONS ***/
-const createUserSuccess = (user) => {
-  return {
+const createUserSuccess = (user) => ({
     type: CREATE_USER_SUCCESS,
-    user
-  }
-}
-const createClassSuccess = (class) => {
-  return {
-    type: CREATE_CLASS_SUCCESS,
-    class: class
-  }
-}
+    user: user
+});
 
+const createClassSuccess = (schoolClass) => ({
+    type: CREATE_CLASS_SUCCESS,
+    class: schoolClass
+});
 
 
 
 /*** METHODS ***/
 
-/* step 1 */
 const createUser = (user) => {
   return (dispatch)=> {
     return axios.post(`/api/user`, user)
@@ -33,11 +28,11 @@ const createUser = (user) => {
   };
 }
 
-/* step 2 */
-const createClass = (class) => {
+const createClass = (schoolClass) => {
   return (dispatch)=> {
-      return axios.post(`/api/class`, class)
+      return axios.post(`/api/class`, schoolClass)
         .then(response => {
+          console.log('response shpulf be school class', response.data)
           return dispatch(createClassSuccess(response.data))
         });
   };
@@ -67,9 +62,7 @@ const userReducer = (state={}, action)=> {
 export { createUser, createClass };
 
 
-
-
-
+export default userReducer;
 
 
 
@@ -83,7 +76,7 @@ const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 const loginUserSuccess = (user)=> {
   return {
     type: LOGIN_SUCCESS,
-    user,
+    user
   };
 };
 
@@ -142,4 +135,4 @@ export {
 
 
 
-export default userReducer;
+// export default userReducer;

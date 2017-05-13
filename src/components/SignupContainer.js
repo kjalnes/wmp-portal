@@ -32,7 +32,7 @@ const ClassForm = (props) => {
                     </optgroup>
                     <optgroup label="2018">
                         <option value="spring-18">Spring</option>
-                        <option value="fall-18" selected>Fall</option>
+                        <option value="fall-18">Fall</option>
                     </optgroup>
                 </select>
                 </div>
@@ -60,25 +60,33 @@ class SignupContainer extends Component {
     }
 
     onChange(type, ev) {
-        console.log('type, ev.target.value', type, ev.target.value)
+        // console.log('type, ev.target.value', type, ev.target.value)
         this.setState({[type] : ev.target.value})
     }
 
 
     onClick(action, ev) {
         ev.preventDefault();
-        // this.setState({ earth: new WE.map('earth_div')})
-        // rotate(this.state.earth, true);
-        // some kind of axios
-        let userInfo = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password };
-        let classInfo = {schoolName: this.state.schoolName, size: this.state.size, semester: this.state.semester };
+        let userInfo = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password };
+
+        let classInfo = {
+            schoolName: this.state.schoolName,
+            size: this.state.size,
+            semester: this.state.semester };
+
         if(action === 'signup') {
             this.props.createUser(userInfo);
             this.props.getLocation();
         }
         if(action === 'register-class') {
             // this.props.createClass(classInfo)
-            console.log('register class action needed')
+            console.log('onClick create-class')
+            this.props.createClass(classInfo)
+            // console.log('register class action needed')
         }
 
         // panTo(this.props.earth, this.props.location);
@@ -94,10 +102,10 @@ class SignupContainer extends Component {
     }
 
     render() {
-        console.log('this.props', this.props)
+        // console.log('this.props.user', this.props.user)
         return (
             <div className='signup-container'>
-                { this.props.user.firstName && this.props.location  ?
+                { this.props.user && this.props.location  ?
                     <ClassForm
                         onClick={this.onClick}
                         onChange={this.onChange}

@@ -4,10 +4,10 @@ import SignupContainer from '../SignupContainer';
 import Globe from '../Globe';
 
 import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer';
-import { createUser } from '../../redux/reducers/userReducer';
+import { createUser, createClass } from '../../redux/reducers/userReducer';
 
 const PortalContainer = (props) => {
-    const { earth, setEarth, getLocation, location, createUser, user } = props;
+    const { earth, setEarth, getLocation, location, createUser, user, createClass} = props;
 
     return (
         <div>
@@ -17,6 +17,7 @@ const PortalContainer = (props) => {
                     getLocation={getLocation}
                     location={location}
                     createUser={createUser}
+                    createClass={createClass}
                     user={user} />
                 <Globe setEarth={setEarth} earth={earth} location={location}/>
             </div>
@@ -36,7 +37,8 @@ const mapDispatchToProps = (dispatch) => {
     return ({
         setEarth: (earth) => dispatch(setEarthSuccess(earth)),
         getLocation: () => dispatch(getLocation()),
-        createUser: (user) => dispatch(createUser(user))
+        createUser: (user) => dispatch(createUser(user)),
+        createClass: (schoolClass) => dispatch(createClass(schoolClass))
     })
 }
 
