@@ -7,11 +7,11 @@ import FindMatch from '../FindMatch';
 import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer';
 // import { createUser, createClass } from '../../redux/reducers/userReducer';
 import { createUser } from '../../redux/reducers/userReducer';
-import { createClass } from '../../redux/reducers/classReducer';
+import { createClass, findMatchFn } from '../../redux/reducers/classReducer';
 
 
 const PortalContainer = (props) => {
-    const { earth, setEarth, getLocation, location, createUser, user, createClass, classDetails } = props;
+    const { earth, setEarth, getLocation, location, createUser, user, createClass, classDetails, findMatchFn, classMatch } = props;
     return (
         <div>
             <div className='portal-container'>
@@ -26,7 +26,11 @@ const PortalContainer = (props) => {
                             createClass={createClass}
                             user={user} />
                     :
-                        <FindMatch classDetails={classDetails}/>
+                        <FindMatch
+                            classDetails={classDetails}
+                            earth={earth}
+                            findMatchFn={findMatchFn}
+                            classMatch={classMatch} />
                     }
                 </div>
                 <Globe setEarth={setEarth} earth={earth} location={location}/>
@@ -36,12 +40,12 @@ const PortalContainer = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state.schoolClass.classDetails', state.schoolClass.classDetails);
     return ({
         earth: state.earth.earth,
         location: state.earth.location,
         user: state.user.user,
-        classDetails: state.schoolClass.classDetails
+        classDetails: state.schoolClass.classDetails,
+        classMatch: state.schoolClass.matchClass
     })
 }
 
@@ -50,7 +54,14 @@ const mapDispatchToProps = (dispatch) => {
         setEarth: (earth) => dispatch(setEarthSuccess(earth)),
         getLocation: () => dispatch(getLocation()),
         createUser: (user) => dispatch(createUser(user)),
-        createClass: (schoolClass) => dispatch(createClass(schoolClass))
+        createClass: (schoolClass) => dispatch(createClass(schoolClass)),
+        findMatchFn: (classDetails) => {
+            dispatch(findMatchFn(classDetails))
+            .then( response => {
+                // console.log('response from PortalContainer', response)
+            })
+        }
+
     })
 }
 
