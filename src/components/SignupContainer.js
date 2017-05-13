@@ -6,6 +6,12 @@ const SignupForm = (props) => {
     const { firstName, lastName, email, password, onChange, onClick } = props;
     return (
         <div className='signup'>
+        <div>
+            WMP offers a Letter exchange program for students between age 9-12 years. This is a chance for students to befriend a student from another country through letter exchanges.
+            <br />
+            It is our aim to promote friendships across borders, enhance literacy and acceptance of diversity, to activate empathy and increase awareness of peace as a strong ideal for young people to aspire to. Each student shares life experiences, art and learn from another student through three letters, all in the name of promoting friendship and non-violent communication. The Letter program provides the participating students with a platform where they can express themselves freely while also learning about the life of a student from a different culture.
+            <h3> Sign your class up here</h3>
+        </div>
             <form className='form-group'>
                 <input onChange={ onChange.bind(null, 'firstName') } value={ firstName }  name='firstName' className='form-control' placeholder='First name'/>
                 <input onChange={ onChange.bind(null, 'lastName') } value={ lastName }  name='lastName' className='form-control' placeholder='Last name'/>
@@ -68,22 +74,6 @@ class SignupContainer extends Component {
 
     onClick(action, ev) {
         ev.preventDefault();
-        // let userInfo = {
-        //     firstName: this.state.firstName,
-        //     lastName: this.state.lastName,
-        //     email: this.state.email,
-        //     password: this.state.password };
-
-            // userId has to come from user.id... not working
-        // let classInfo = {
-        //     schoolName: this.state.schoolName,
-        //     size: this.state.size,
-        //     semester: this.state.semester,
-        //     coordinates: this.props.location,
-        //     userId: 1
-        // };
-
-
         if(action === 'signup') {
             this.props.createUser({
                 firstName: this.state.firstName,

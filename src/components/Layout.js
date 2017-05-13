@@ -20,7 +20,9 @@ const Layout = ({ children, products, user, logout })=> (
           <a onClick={ logout }>Logout ({ user.name })</a>
         )
       }
+      <hr />
     </div>
+
     { children }
   </div>
 );

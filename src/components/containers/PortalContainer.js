@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import SignupContainer from '../SignupContainer';
 import Globe from '../Globe';
 import FindMatch from '../FindMatch';
-
 import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer';
-// import { createUser, createClass } from '../../redux/reducers/userReducer';
 import { createUser } from '../../redux/reducers/userReducer';
 import { createClass, findMatchFn } from '../../redux/reducers/classReducer';
 
@@ -18,13 +16,15 @@ const PortalContainer = (props) => {
 
                 <div className='front-content'>
                     { user === undefined || classDetails === undefined ?
-                        <SignupContainer
-                            earth={earth}
-                            getLocation={getLocation}
-                            location={location}
-                            createUser={createUser}
-                            createClass={createClass}
-                            user={user} />
+                        <div>
+                            <SignupContainer
+                                earth={earth}
+                                getLocation={getLocation}
+                                location={location}
+                                createUser={createUser}
+                                createClass={createClass}
+                                user={user} />
+                        </div>
                     :
                         <FindMatch
                             classDetails={classDetails}

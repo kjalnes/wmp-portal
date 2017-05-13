@@ -1,3 +1,7 @@
+body {
+    font-family: Helvetica;
+}
+
 .signup-container, .front-content {
     position: absolute;
     z-index: 1;
@@ -11,6 +15,13 @@
     top: 0;
 }
 
+.box {
+    /*background-color: rgba(255,255,255,0.6)*/
+}
+
+.pink {
+    color: #de174f;
+}
 
 input.form-control {
     opacity: 0.7;

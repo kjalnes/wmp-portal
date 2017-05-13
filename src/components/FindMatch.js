@@ -36,16 +36,20 @@ class FindMatch extends Component {
 
     render() {
         return (
-            <div>
+            <div className='box'>
                 {
                     this.props.classMatch && this.state.rotating === false ?
-                    <div>
-                        <h3>{this.props.classDetails.schoolName} has been matched with {this.props.classMatch.schoolName}</h3>
+                    <div style={{width: '500px'}}>
+                        <h3><span className='pink'>{this.props.classDetails.schoolName}</span> has been matched with <span className='pink'>{this.props.classMatch.schoolName}</span></h3>
+                        <div>
+                            <p>Please check your email for a confirmation email. Once the exchange has been confirmed by both school classes, you will receive the instructions for how to proceeed.</p>
+                        <p>Thank you for joining the WMP Letter exchange program!</p>
+                        </div>
                     </div>
                     :
                     <div>
-                        <h3>{ this.props.classDetails.schoolName } is now ready to be connected with another school.</h3>
-                        <button onClick={ this.onClick} className='btn btn-default'>Find a letter exchange match</button>
+                        <h3><span className='pink'>{ this.props.classDetails.schoolName }</span> is now ready to be connected with another school.</h3>
+                        <button onClick={ this.onClick} className='btn btn-primary'>Find a letter exchange match</button>
                     </div>
                 }
             </div>
