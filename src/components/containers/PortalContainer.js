@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
         location: state.earth.location,
         user: state.user.user,
         classDetails: state.schoolClass.classDetails,
-        classMatch: state.schoolClass.matchClass
+        classMatch: state.schoolClass.matchClass,
         countries: state.earth.countries,
         currentCountry: state.earth.currentCountry
     };

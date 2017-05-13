@@ -20,6 +20,13 @@ class Globe extends Component {
         if(!this.props.earth && nextProps.earth) {
             rotate(nextProps.earth);
             nextProps.earth.on("click", ({ latitude, longitude }) => {
+                let previousPopups = document.querySelectorAll(".we-pp-close");
+
+                // this closes any existing popups that might be open
+                if (previousPopups.length) {
+                    previousPopups.forEach(popup => popup.click());
+                }
+
                 this.props.fetchCountry(latitude, longitude);
             });
         }
