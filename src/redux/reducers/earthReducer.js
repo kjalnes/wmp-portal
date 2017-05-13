@@ -4,7 +4,6 @@ const SET_EARTH = 'SET_EARTH';
 const GET_LOCATION_SUCCESS = 'GET_LOCATION_SUCCESS';
 
 const setEarthSuccess = (earth) => {
-    // console.log('earth', earth)
     return ({
             type: SET_EARTH,
             earth: earth
@@ -12,7 +11,7 @@ const setEarthSuccess = (earth) => {
 };
 
 const getLocationSuccess = (location) => {
-    console.log('location', location)
+    // console.log('location', location)
     return ({
             type: GET_LOCATION_SUCCESS,
             location: location
@@ -20,7 +19,7 @@ const getLocationSuccess = (location) => {
 };
 
 
-/* thunkify */
+/* thunkify function*/
 const getLocation = () => {
     return (dispatch) => {
         return navigator.geolocation.getCurrentPosition((location) => {
@@ -34,7 +33,7 @@ const getLocation = () => {
 let initialState = {};
 
 const earthReducer = (state=initialState, action) => {
-    console.log('action', action)
+    // console.log('action', action)
     switch(action.type) {
         case SET_EARTH:
             state = Object.assign({}, state, { earth: action.earth });

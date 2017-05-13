@@ -2,7 +2,7 @@ import axios from 'axios';
 
 /*** CONSTANTS ***/
 const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
-const CREATE_CLASS_SUCCESS = 'CREATE_CLASS_SUCCESS';
+// const CREATE_CLASS_SUCCESS = 'CREATE_CLASS_SUCCESS';
 
 /*** ACTIONS ***/
 const createUserSuccess = (user) => ({
@@ -10,10 +10,10 @@ const createUserSuccess = (user) => ({
     user: user
 });
 
-const createClassSuccess = (schoolClass) => ({
-    type: CREATE_CLASS_SUCCESS,
-    class: schoolClass
-});
+// const createClassSuccess = (schoolClass) => ({
+//     type: CREATE_CLASS_SUCCESS,
+//     class: schoolClass
+// });
 
 
 
@@ -28,15 +28,19 @@ const createUser = (user) => {
   };
 }
 
-const createClass = (schoolClass) => {
-  return (dispatch)=> {
-      return axios.post(`/api/class`, schoolClass)
-        .then(response => {
-          console.log('response shpulf be school class', response.data)
-          return dispatch(createClassSuccess(response.data))
-        });
-  };
-}
+// const createClass = (schoolClass) => {
+//   return (dispatch)=> {
+//       return axios.post(`/api/class`, schoolClass)
+//         .then(response => {
+//           console.log('response shpulf be school class', response.data)
+//           return dispatch(createClassSuccess(response.data))
+//         });
+//   };
+// }
+
+
+
+
 
 
 const userReducer = (state={}, action)=> {
@@ -44,9 +48,9 @@ const userReducer = (state={}, action)=> {
     case CREATE_USER_SUCCESS:
       state = Object.assign({}, state, {user: action.user});
       break;
-    case CREATE_CLASS_SUCCESS:
-      state = Object.assign({}, state, {class: action.class});
-      break;
+    // case CREATE_CLASS_SUCCESS:
+    //   state = Object.assign({}, state, {class: action.class});
+    //   break;
     case LOGIN_SUCCESS:
       state = Object.assign({}, state, action.user);
       break;
@@ -59,7 +63,8 @@ const userReducer = (state={}, action)=> {
 
 
 
-export { createUser, createClass };
+export { createUser };
+// export { createUser, createClass };
 
 
 export default userReducer;

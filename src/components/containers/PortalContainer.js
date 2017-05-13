@@ -2,19 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SignupContainer from '../SignupContainer';
 import Globe from '../Globe';
+import FindMatch from '../FindMatch';
 
 import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer';
-import { createUser, createClass } from '../../redux/reducers/userReducer';
+// import { createUser, createClass } from '../../redux/reducers/userReducer';
+import { createUser } from '../../redux/reducers/userReducer';
+import { createClass } from '../../redux/reducers/classReducer';
+
 
 const PortalContainer = (props) => {
-    const { earth, setEarth, getLocation, location, createUser, user, schoolClass, createClass} = props;
-    console.log('schoolClass', schoolClass)
+    const { earth, setEarth, getLocation, location, createUser, user, createClass, classDetails } = props;
     return (
         <div>
             <div className='portal-container'>
 
                 <div className='front-content'>
-                    { user === undefined || schoolClass === undefined ?
+                    { user === undefined || classDetails === undefined ?
                         <SignupContainer
                             earth={earth}
                             getLocation={getLocation}
@@ -23,7 +26,7 @@ const PortalContainer = (props) => {
                             createClass={createClass}
                             user={user} />
                     :
-                        <div> Ready for next step </div>
+                        <FindMatch classDetails={classDetails}/>
                     }
                 </div>
                 <Globe setEarth={setEarth} earth={earth} location={location}/>
@@ -33,11 +36,12 @@ const PortalContainer = (props) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log('state.schoolClass.classDetails', state.schoolClass.classDetails);
     return ({
         earth: state.earth.earth,
         location: state.earth.location,
         user: state.user.user,
-        schoolClass: state.user.class
+        classDetails: state.schoolClass.classDetails
     })
 }
 

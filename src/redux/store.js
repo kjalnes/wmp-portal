@@ -3,12 +3,13 @@ import thunk from 'redux-thunk';
 import productsReducer from './reducers/productsReducer';
 import userReducer from './reducers/userReducer';
 import earthReducer from './reducers/earthReducer';
+import classReducer from './reducers/classReducer';
 
 
 const combined = combineReducers({
-  // products: productsReducer,
   user: userReducer,
-  earth: earthReducer
+  earth: earthReducer,
+  schoolClass: classReducer
 });
 
 /* download the redux devtools chrome extension for this to work - https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en

@@ -62,7 +62,6 @@ class SignupContainer extends Component {
     }
 
     onChange(type, ev) {
-        // console.log('type, ev.target.value', type, ev.target.value)
         this.setState({[type] : ev.target.value})
     }
 
@@ -75,23 +74,23 @@ class SignupContainer extends Component {
             email: this.state.email,
             password: this.state.password };
 
+            // userId has to come from user.id... not working
         let classInfo = {
             schoolName: this.state.schoolName,
             size: this.state.size,
-            semester: this.state.semester };
+            semester: this.state.semester,
+            coordinates: this.props.location,
+            userId: 1
+        };
+
 
         if(action === 'signup') {
             this.props.createUser(userInfo);
             this.props.getLocation();
         }
         if(action === 'register-class') {
-            // this.props.createClass(classInfo)
-            console.log('onClick create-class')
             this.props.createClass(classInfo)
-            // console.log('register class action needed')
         }
-
-        // panTo(this.props.earth, this.props.location);
     }
 
     // gets called whenever state or props change
