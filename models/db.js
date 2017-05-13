@@ -3,7 +3,9 @@ const Sequelize = require('sequelize');
 const conn = new Sequelize(process.env.DATABASE_URL);
 
 const User = conn.define('user', {
-  name: {
+  firstName: conn.Sequelize.STRING,
+  lastName: conn.Sequelize.STRING,
+  email: {
     type: conn.Sequelize.STRING,
     unique: true
   },
@@ -15,7 +17,7 @@ const User = conn.define('user', {
 const sync = ()=> conn.sync({ force: true });
 
 const seed = ()=> {
-  const users = ['Rolf Ivar Breivik', 'Vegard Hillestad', 'Åse Urke'];
+  const users = [{firstName:'Rolf Ivar', lastName: 'Breivik', email:'name@email.com'}, {firstName:'Vegard', lastName:'Hillestad', email:'name2@email.com'}, {firstName:'Åse', lastName: 'Urke', email:'name3@email.com'}];
   let rolf, vegard, aase;
 
   return sync()
@@ -23,7 +25,7 @@ const seed = ()=> {
       return User.destroy({ truncate: true });//not sure why i need this?/
     })
     .then(()=> {
-      const promises = users.map( name => User.create( { name, password: '123'}));
+      const promises = users.map( user => User.create( { firstName: user.firstName, lastName: user.lastName, email: user.email, password: '123'}));
       return Promise.all(promises);
     })
     .then( result => [ rolf, vegard, aase] = result )

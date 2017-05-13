@@ -1,5 +1,62 @@
 import axios from 'axios';
 
+/*** CONSTANTS ***/
+const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+
+/*** ACTIONS ***/
+const createUserSuccess = (user) => {
+  console.log('user', user)
+  return {
+    type: CREATE_USER_SUCCESS,
+    user
+  }
+}
+
+/*** METHODS ***/
+
+const createUser = (user) => {
+  return (dispatch)=> {
+    return axios.post(`/api/user`, user)
+      .then(response => {
+        console.log('response should be user', response.data)
+        return dispatch(createUserSuccess(response.data))
+      });
+  };
+}
+
+
+
+const userReducer = (state={}, action)=> {
+  console.log('action', action)
+  switch(action.type){
+    case CREATE_USER_SUCCESS:
+      state = Object.assign({}, state, action.user);
+      break;
+    case LOGIN_SUCCESS:
+      state = Object.assign({}, state, action.user);
+      break;
+    case LOGOUT_SUCCESS:
+      state = {};
+      break;
+  }
+  return state;
+};
+
+
+
+export { createUser };
+
+
+
+
+
+
+
+
+
+
+
+/***/
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
@@ -9,7 +66,6 @@ const loginUserSuccess = (user)=> {
     user,
   };
 };
-
 
 const logoutSuccess = ()=> ({
   type: LOGOUT_SUCCESS
@@ -64,18 +120,6 @@ export {
   logout,
 };
 
-
-const userReducer = (state={}, action)=> {
-  switch(action.type){
-    case LOGIN_SUCCESS:
-      state = Object.assign({}, state, action.user); 
-      break;
-    case LOGOUT_SUCCESS:
-      state = {}; 
-      break;
-  }
-  return state;
-};
 
 
 export default userReducer;

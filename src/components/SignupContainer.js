@@ -3,11 +3,11 @@ import { rotate, animate, startRotation, stopRotation, panTo } from '../utils/gl
 
 
 const SignupForm = (props) => {
-    const { fullName, email, password, onChange, onClick } = props;
+    const { firstName, lastName, email, password, onChange, onClick } = props;
     return (
         <form className='form-group'>
-            <input onChange={ onChange.bind(null, 'fullName') } value={ fullName }  name='fullName' className='form-control' placeholder='Full name'/>
-
+            <input onChange={ onChange.bind(null, 'firstName') } value={ firstName }  name='firstName' className='form-control' placeholder='First name'/>
+            <input onChange={ onChange.bind(null, 'lastName') } value={ lastName }  name='lastName' className='form-control' placeholder='Last name'/>
             <input onChange={ onChange.bind(null, 'email') } value={ email }  name='email' className='form-control'placeholder='Email'/>
             <input onChange={ onChange.bind(null, 'password') } value={ password }  name='password' className='form-control' type='password' placeholder='Password'/>
             <button onClick={ onClick } className='btn btn-primary'>Sign up</button>
@@ -18,7 +18,7 @@ const SignupForm = (props) => {
 class SignupContainer extends Component {
     constructor() {
         super()
-        this.state = { fullName: '', email: '', password: ''};
+        this.state = { firstName: '', lastName: '', email: '', password: ''};
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
     }
@@ -33,6 +33,7 @@ class SignupContainer extends Component {
         // this.setState({ earth: new WE.map('earth_div')})
         // rotate(this.state.earth, true);
         // some kind of axios
+        this.props.createUser(this.state);
         this.props.getLocation();
 
         // panTo(this.props.earth, this.props.location);
@@ -50,7 +51,13 @@ class SignupContainer extends Component {
     render() {
         return (
             <div className='signup-container'>
-                <SignupForm onClick={this.onClick} onChange={this.onChange} fullName={this.state.fullName} email={this.state.email} password={this.state.password} />
+                <SignupForm
+                    onClick={this.onClick}
+                    onChange={this.onChange}
+                    firstName={this.state.firstName}
+                    lastName={this.state.lastName}
+                    email={this.state.email}
+                    password={this.state.password} />
             </div>
         )
     }
