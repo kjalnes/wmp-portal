@@ -68,28 +68,39 @@ class SignupContainer extends Component {
 
     onClick(action, ev) {
         ev.preventDefault();
-        let userInfo = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            password: this.state.password };
+        // let userInfo = {
+        //     firstName: this.state.firstName,
+        //     lastName: this.state.lastName,
+        //     email: this.state.email,
+        //     password: this.state.password };
 
             // userId has to come from user.id... not working
-        let classInfo = {
-            schoolName: this.state.schoolName,
-            size: this.state.size,
-            semester: this.state.semester,
-            coordinates: this.props.location,
-            userId: 1
-        };
+        // let classInfo = {
+        //     schoolName: this.state.schoolName,
+        //     size: this.state.size,
+        //     semester: this.state.semester,
+        //     coordinates: this.props.location,
+        //     userId: 1
+        // };
 
 
         if(action === 'signup') {
-            this.props.createUser(userInfo);
+            this.props.createUser({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                password: this.state.password
+            });
             this.props.getLocation();
         }
         if(action === 'register-class') {
-            this.props.createClass(classInfo)
+            this.props.createClass({
+                schoolName: this.state.schoolName,
+                size: this.state.size,
+                semester: this.state.semester,
+                coordinates: this.props.location,
+                userId: this.props.user.id
+            })
         }
     }
 
