@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { rotate, startRotation, stopRotation, panTo } from '../utils/globeAnimation';
+import { rotate, startRotation, stopRotation, panTo, createMarkerAndPopup } from '../utils/globeAnimation';
 
 class FindMatch extends Component {
     constructor() {
@@ -24,23 +24,27 @@ class FindMatch extends Component {
 
 
     componentWillUpdate(newProps, newState) {
-        if(this.props.classMatch !== newProps.classMatch ) {
+        const classHasChanged = this.props.matchClass !== newProps.matchClass;
+        const countryInfoAvailable = newProps.matchClass && newProps.matchClass.alpha2Code;
+        const addMarker = false;
+
+        if (classHasChanged && countryInfoAvailable) {
             setTimeout(function(){
                 stopRotation();
-                panTo(newProps.earth, newProps.classMatch.coordinates);
-                this.setState({ rotating: false })
+                panTo(newProps.earth, newProps.matchClass.coordinates, addMarker);
+                this.setState({ rotating: false });
+                createMarkerAndPopup(newProps.matchClass, newProps.earth);
             }.bind(this), 3000);
         }
-
     }
 
     render() {
         return (
             <div className='box'>
                 {
-                    this.props.classMatch && this.state.rotating === false ?
+                    this.props.matchClass && this.state.rotating === false ?
                     <div style={{width: '500px'}}>
-                        <h3><span className='pink'>{this.props.classDetails.schoolName}</span> has been matched with <span className='pink'>{this.props.classMatch.schoolName}</span></h3>
+                        <h3><span className='pink'>{this.props.classDetails.schoolName}</span> has been matched with <span className='pink'>{this.props.matchClass.schoolName}</span></h3>
                         <div>
                             <p>Please check your email for a confirmation email. Once the exchange has been confirmed by both school classes, you will receive the instructions for how to proceeed.</p>
                         <p>Thank you for joining the WMP Letter exchange program!</p>

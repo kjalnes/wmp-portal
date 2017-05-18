@@ -1,10 +1,3 @@
-// function initialize(earth) {
-//     var options = { zoom: 3.0, position: [40.6925285,-73.9553329] };
-//     // var earth = new WE.map('earth_div', options);
-//     WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(earth);
-//      // panTo(center, options?)
-// }
-
 let requestId;
 let before = null;
 
@@ -36,7 +29,7 @@ function stopRotation() {
     }
 }
 
-function panTo(earth, coordinates) {
+function panTo(earth, coordinates, addMarker) {
     let latitude = coordinates[0];
     let longitude = coordinates[1];
 
@@ -45,7 +38,9 @@ function panTo(earth, coordinates) {
         [ latitude + 10, longitude + 10 ]
     ]);
 
-    WE.marker(coordinates).addTo(earth);
+    if (addMarker) {
+        WE.marker(coordinates).addTo(earth);
+    }
 
     // let coordinates = [71.1695, 25.7832];
     // earth.panTo(coordinates);
@@ -53,4 +48,28 @@ function panTo(earth, coordinates) {
     // earth.setView(coordinates, 6);
 }
 
-export { rotate, animate, startRotation, stopRotation, panTo };
+
+const createMarkerAndPopup = (country, earth) => {
+    console.log('country, earth', country, earth)
+      let marker = WE.marker(country.latlng).addTo(earth);
+    // mounts the popup html to the marker
+        marker.bindPopup(getPopupMarkup(country)).openPopup();
+}
+
+
+/*
+ * generates the HTML for the country popup
+ */
+const getPopupMarkup = (country) => {
+    return (
+        `<div>
+            <img src="../../../public/images/Peace-Letters-icon.png" style="width:100px;"/>
+            <img src="${country.flag}" style="width:100px;"/>
+
+            <h3>Name: ${country.name}</h3>
+            <h3>Population: ${country.population}</h3>
+        </div>`
+    );
+}
+
+export { rotate, animate, startRotation, stopRotation, panTo, createMarkerAndPopup, getPopupMarkup };

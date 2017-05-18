@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { rotate, animate, startRotation, stopRotation, panTo } from '../utils/globeAnimation';
+import { rotate, animate, startRotation, stopRotation, panTo, createMarkerAndPopup } from '../utils/globeAnimation';
 
 class Globe extends Component {
 
@@ -38,8 +38,8 @@ class Globe extends Component {
                     previousPopups.forEach(popup => popup.click());
                 }
 
-                // get the country code based on the latitude / longitude
-                this.props.fetchCountry(latitude, longitude);
+                // // get the country code based on the latitude / longitude
+                // this.props.fetchCountry(latitude, longitude);
             });
         }
 
@@ -53,10 +53,12 @@ class Globe extends Component {
             stopRotation();
             // pans to the country
             panTo(nextProps.earth, nextProps.currentCountry.latlng);
+            // createMarkerAndPopup(nextProps.currentCountry, nextProps.earth);
+
             // creates the popup marker
-            let marker = WE.marker(nextProps.currentCountry.latlng).addTo(nextProps.earth);
-            // mounts the popup html to the marker
-            marker.bindPopup(this.getPopupMarkup(nextProps.currentCountry)).openPopup();
+            // let marker = WE.marker(nextProps.currentCountry.latlng, '../../../public/images/Peace-Letters-icon.png', 25, 25).addTo(nextProps.earth);
+            // // mounts the popup html to the marker
+            // marker.bindPopup(this.getPopupMarkup(nextProps.currentCountry)).openPopup();
         }
     }
 
@@ -64,15 +66,15 @@ class Globe extends Component {
      * this generates the HTML for the country popup
      * (returns a string, not JSX, since that is what the popup needs)
      */
-    getPopupMarkup(country) {
-        return (
-            `<div>
-                <img src="${country.flag}" style="width:100px;"/>
-                <h3>Name: ${country.name}</h3>
-                <h3>Population: ${country.population}</h3>
-            </div>`
-        );
-    }
+    // getPopupMarkup(country) {
+    //     return (
+    //         `<div>
+    //             <img src="../../../public/images/Peace-Letters-icon.png" style="width:100px;"/>
+    //             <h3>Name: ${country.name}</h3>
+    //             <h3>Population: ${country.population}</h3>
+    //         </div>`
+    //     );
+    // }
 
     render() {
         return (

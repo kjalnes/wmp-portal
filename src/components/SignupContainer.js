@@ -95,11 +95,13 @@ class SignupContainer extends Component {
     }
 
     // gets called whenever state or props change
-    // newProps gives the updated props / newState give updated state
-    componentWillUpdate(newProps, newState) {
-        if(this.props.location !== newProps.location ) {
+    // nextProps gives the updated props / nextState give updated state
+    componentWillUpdate(nextProps, nextState) {
+        const addMarker = true;
+
+        if(this.props.location !== nextProps.location ) {
             stopRotation();
-            panTo(newProps.earth, newProps.location);
+            panTo(nextProps.earth, nextProps.location, addMarker);
         }
     }
 
@@ -113,7 +115,7 @@ class SignupContainer extends Component {
                         firstName={this.state.firstName}
                         schoolName={this.schoolName}
                         size={this.size}
-                        semeste={this.semester} />
+                        semester={this.semester} />
                     :
                     <SignupForm
                         onClick={this.onClick}

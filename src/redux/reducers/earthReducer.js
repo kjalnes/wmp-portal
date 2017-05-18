@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const SET_EARTH = 'SET_EARTH';
 const GET_LOCATION_SUCCESS = 'GET_LOCATION_SUCCESS';
-const FETCH_COUNTRY_SUCCESS = 'FETCH_COUNTRY_SUCCESS';
 const FETCH_ALL_COUNTRIES_SUCCESS = 'FETCH_ALL_COUNTRIES_SUCCESS';
 
 const setEarthSuccess = (earth) => {
@@ -25,13 +24,6 @@ const fetchAllCountriesSuccess = (countries) => {
         countries: countries
     };
 }
-
-const fetchCountrySuccess = (country) => {
-    return {
-        type: FETCH_COUNTRY_SUCCESS,
-        country: country
-    };
-};
 
 /* thunkify function*/
 const getLocation = () => {
@@ -72,9 +64,6 @@ const earthReducer = (state=initialState, action) => {
             return state = Object.assign({}, state, { location: action.location});
         case FETCH_ALL_COUNTRIES_SUCCESS:
             return state = Object.assign({}, state, { countries: action.countries });
-        case FETCH_COUNTRY_SUCCESS:
-            const currentCountry = state.countries.find(country => country.alpha2Code === action.country.countryCode);
-            return state = Object.assign({}, state, { currentCountry });
     }
     return state
 }

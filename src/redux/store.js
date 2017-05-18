@@ -14,7 +14,7 @@ const combined = combineReducers({
 
 /* download the redux devtools chrome extension for this to work - https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en
 */
-const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+const reduxDevtools = false; // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 let store;
 
@@ -25,6 +25,7 @@ if (reduxDevtools) {
 }
 
 // const store = createStore(combined, applyMiddleware(thunk));
+
 
 export default store;
 

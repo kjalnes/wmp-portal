@@ -10,6 +10,7 @@ app.post('/', (req, res, next) => {
 });
 
 
+
 app.get('/', (req, res, next) => {
     models.Class.findAll({where: { semester: 'fall-17'}})
     .then( classes => {
