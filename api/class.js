@@ -9,12 +9,9 @@ app.post('/', (req, res, next) => {
     .catch(next)
 });
 
-
-
-app.get('/', (req, res, next) => {
-    models.Class.findAll({where: { semester: 'fall-17'}})
+app.get('/:semester', (req, res, next) => {
+    models.Class.findAll({where: { semester: req.params.semester }})
     .then( classes => {
-        console.log('classes', classes)
         res.send(classes)
     })
     .catch(next)

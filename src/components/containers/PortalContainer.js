@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import SignupContainer from '../SignupContainer';
 import Globe from '../Globe';
 import FindMatch from '../FindMatch';
-
-import { setEarthSuccess, getLocation, fetchAllCountries } from '../../redux/reducers/earthReducer';
+import { setEarthSuccess, getLocation } from '../../redux/reducers/earthReducer';
 import { createUser } from '../../redux/reducers/userReducer';
 import { createClass, findMatchFn } from '../../redux/reducers/classReducer';
 
@@ -20,28 +19,21 @@ const PortalContainer = (props) => {
         schoolClass,
         createClass,
         classDetails,
-        fetchAllCountries,
-        countries,
-        currentCountry,
         findMatchFn,
-        matchClass
-    } = props;
+        matchClass } = props;
 
     return (
         <div>
             <div className='portal-container'>
-
                 <div className='front-content'>
                     { user === undefined || classDetails === undefined ?
-                        <div>
-                            <SignupContainer
-                                earth={earth}
-                                getLocation={getLocation}
-                                location={location}
-                                createUser={createUser}
-                                createClass={createClass}
-                                user={user} />
-                        </div>
+                        <SignupContainer
+                            earth={earth}
+                            getLocation={getLocation}
+                            location={location}
+                            createUser={createUser}
+                            createClass={createClass}
+                            user={user} />
                     :
                         <FindMatch
                             classDetails={classDetails}
@@ -50,30 +42,19 @@ const PortalContainer = (props) => {
                             matchClass={matchClass} />
                     }
                 </div>
-                <Globe
-                    setEarth={setEarth}
-                    earth={earth}
-                    location={location}
-                    countries={countries}
-                    currentCountry={currentCountry}
-                    fetchAllCountries={fetchAllCountries}
-                />
+                <Globe setEarth={setEarth} earth={earth} />
             </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log("state.schoolClass.classDetails", state.schoolClass.classDetails)
-    console.log("state.schoolClass.matchClass", state.schoolClass.matchClass)
     return {
         earth: state.earth.earth,
         location: state.earth.location,
         user: state.user.user,
         classDetails: state.schoolClass.classDetails,
-        matchClass: state.schoolClass.matchClass,
-        countries: state.earth.countries,
-        currentCountry: state.earth.currentCountry
+        matchClass: state.schoolClass.matchClass
     };
 }
 
@@ -83,13 +64,7 @@ const mapDispatchToProps = (dispatch) => {
         getLocation: () => dispatch(getLocation()),
         createUser: (user) => dispatch(createUser(user)),
         createClass: (schoolClass) => dispatch(createClass(schoolClass)),
-        findMatchFn: (classDetails) => {
-            dispatch(findMatchFn(classDetails))
-            .then( response => {
-                // console.log('response from PortalContainer', response)
-            })
-        },
-        fetchAllCountries: () => dispatch(fetchAllCountries())
+        findMatchFn: (classDetails) => dispatch(findMatchFn(classDetails))
     };
 }
 

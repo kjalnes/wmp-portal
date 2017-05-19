@@ -9,22 +9,48 @@ body {
     width: 350px;
 }
 
+.front-content {
+    margin-top: 50px
+}
+
 .header {
     position: absolute;
     z-index: 1;
     top: 0;
 }
 
-.box {
-    /*background-color: rgba(255,255,255,0.6)*/
+.logo img {
+    position: absolute;
+    width: 120px;
+    margin-top: 30px;
+    margin-left: -120px;
+}
+
+.we-pp-wrapper {
+    border-radius: 0 !important;
+}
+
+.match-box {
+    border: 1px dotted grey;
+    padding: 52px;
+    background-color: rgba(254,255,255,0.5);
 }
 
 .pink {
     color: #de174f;
 }
 
+.nav {
+    margin: 20 0 0 48px;
+    color: black;
+}
+
 input.form-control {
     opacity: 0.7;
+}
+
+span.cesium-credit-textContainer {
+    display: none;
 }
 
 .btn-primary {

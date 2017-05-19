@@ -23,16 +23,16 @@ const fetchAllCountriesSuccess = (countries) => {
         type: FETCH_ALL_COUNTRIES_SUCCESS,
         countries: countries
     };
-}
+};
 
 /* thunkify function*/
 const getLocation = () => {
     return (dispatch) => {
         return navigator.geolocation.getCurrentPosition((location) => {
-            let coordinates = [location.coords.latitude, location.coords.longitude]
-            dispatch(getLocationSuccess(coordinates))
-        })
-    }
+            let coordinates = [ location.coords.latitude, location.coords.longitude ];
+            dispatch(getLocationSuccess(coordinates));
+        });
+    };
 };
 
 const fetchAllCountries = () => {
@@ -61,11 +61,11 @@ const earthReducer = (state=initialState, action) => {
         case SET_EARTH:
             return state = Object.assign({}, state, { earth: action.earth });
         case GET_LOCATION_SUCCESS:
-            return state = Object.assign({}, state, { location: action.location});
+            return state = Object.assign({}, state, { location: action.location });
         case FETCH_ALL_COUNTRIES_SUCCESS:
             return state = Object.assign({}, state, { countries: action.countries });
     }
-    return state
+    return state;
 }
 
 export { setEarthSuccess, getLocation, fetchCountry, fetchAllCountries }
