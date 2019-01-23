@@ -12,6 +12,8 @@
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
     "chai": "^3.5.0",
+    "country-iso-3-to-2": "^1.0.1",
+    "country-list": "^2.1.0",
     "express": "^4.15.2",
     "jwt-simple": "^0.5.1",
     "mocha": "^3.3.0",
@@ -24,7 +26,8 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^3.30.2",
     "supertest": "^3.0.0",
-    "webpack": "^2.3.0"
+    "webpack": "^2.3.0",
+    "which-country": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

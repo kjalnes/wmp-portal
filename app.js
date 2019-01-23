@@ -15,3 +15,4 @@ app.get('/', (req, res, next)=> res.sendFile(path.join(__dirname, 'index.html'))
 
 app.use('/api/user', require('./api/user'));
 app.use('/api/class', require('./api/class'));
+app.use('/api/countries', require('./api/countries'));

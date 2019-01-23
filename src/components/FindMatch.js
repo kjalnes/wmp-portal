@@ -14,7 +14,6 @@ class FindMatch extends Component {
     }
 
     onClick(action, ev) {
-        ev.preventDefault();
         this.setState({ rotating: true });
         this.props.findMatchFn(this.props.classDetails);
         rotate(this.props.earth);
@@ -23,7 +22,7 @@ class FindMatch extends Component {
 
     componentWillUpdate(newProps, newState) {
         const classHasChanged = this.props.matchClass !== newProps.matchClass;
-        const countryInfoAvailable = newProps.matchClass && newProps.matchClass.alpha2Code;
+        const countryInfoAvailable = newProps.matchClass && newProps.matchClass.coordinates;
         const addMarker = false;
 
         if (classHasChanged && countryInfoAvailable) {
@@ -59,7 +58,7 @@ class FindMatch extends Component {
                     :
                     <div>
                         <h3><span className='pink'>{ this.props.classDetails.schoolName }</span> is now ready to be connected with another school.</h3>
-                        <button onClick={ this.onClick} className='btn btn-primary'>Find a letter exchange match</button>
+                        <button onClick={this.onClick} className='btn btn-primary'>Find a letter exchange match</button>
                     </div>
                 }
             </div>

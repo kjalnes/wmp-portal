@@ -13,7 +13,7 @@ const createClassSuccess = (classDetails) => ({
 
 const matchFound = (matchClass) => ({
   type: MATCH_FOUND_SUCCESS,
-  matchClass: matchClass
+  matchClass
 });
 
 const fetchCountrySuccess = (country, classType) => {
@@ -43,17 +43,16 @@ const createClass = (schoolDetails) => {
 
 const fetchCountryCode = (lat, lng, classType) => {
     return (dispatch)=> {
-        return axios.get(`http://ws.geonames.org/countryCodeJSON?lat=${lat}&lng=${lng}&username=kjalnes`)
-          .then(({ data }) => {
-              const { countryCode } = data;
-              dispatch(fetchCountry(countryCode, classType));
+        return axios.get(`/api/countries/${lat}/${lng}`)
+          .then(({ data: { countryCode }}) => {
+                dispatch(fetchCountry(countryCode, classType));
           });
     };
 };
 
 const fetchCountry = (countryCode, classType) => {
     return (dispatch)=> {
-        return axios.get(`https://restcountries.eu/rest/v2/alpha/${countryCode}`)
+        return axios.get(`/api/countries/${countryCode}`)
           .then(({ data }) => {
               dispatch(fetchCountrySuccess(data, classType));
           });
@@ -79,8 +78,8 @@ const findMatchFn = (schoolDetails) => {
                 return match;
             });
 
-            const matchLat = match.latlng[ 0 ];
-            const matchLng = match.latlng[ 1 ];
+            const matchLat = match.coordinates[ 0 ];
+            const matchLng = match.coordinates[ 1 ];
 
             dispatch(fetchCountryCode(matchLat, matchLng, "matchClass"));
             return dispatch(matchFound(match));
